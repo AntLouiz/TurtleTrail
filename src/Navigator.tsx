@@ -10,15 +10,23 @@ import { SearchInput } from "./components/SearchInput";
 const Drawer = createDrawerNavigator();
 
 const Navigator = (): ReactNode => {
-  const defaultOptions = {
-    headerRight: () => <SearchInput placeholder="Search a nest" />,
-  };
-
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home" screenOptions={defaultOptions}>
-        <Drawer.Screen name="Home" component={Home} />
-        <Drawer.Screen name="Turtles" component={TurtlesList} />
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen
+          name="Home"
+          component={Home}
+          options={{
+            headerRight: () => <SearchInput placeholder="Search a nest" />,
+          }}
+        />
+        <Drawer.Screen
+          name="Turtles"
+          component={TurtlesList}
+          options={{
+            headerRight: () => <SearchInput placeholder="Search a turtle" />,
+          }}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );
