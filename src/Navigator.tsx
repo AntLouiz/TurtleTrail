@@ -12,7 +12,7 @@ const Drawer = createDrawerNavigator();
 const Navigator = (): ReactNode => {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
+      <Drawer.Navigator initialRouteName="Turtles">
         <Drawer.Screen
           name="Home"
           component={Home}
