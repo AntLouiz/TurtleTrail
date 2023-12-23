@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { StyleSheet, TextInput } from "react-native";
+import { COLORS } from "../../tokens/colors";
+import { SPACING } from "../../tokens/spacing";
 
 type Props = {
   placeholder: string;
@@ -30,20 +32,20 @@ export const SearchInput = (props: Props) => {
 const styles = StyleSheet.create({
   searchIcon: {
     position: "absolute",
-    top: 9,
-    right: 10,
+    top: SPACING[3],
+    right: SPACING[3],
   },
   input: {
-    padding: 10,
+    padding: SPACING[3],
     width: 500,
-    borderRadius: 28,
+    borderRadius: SPACING[7],
   },
   container: {
-    marginRight: 20,
+    marginRight: SPACING[5],
     position: "absolute",
     flex: 1,
-    borderRadius: 28,
-    backgroundColor: "#F3EDF7",
+    borderRadius: SPACING[7],
+    backgroundColor: COLORS.background,
     alignItems: "center",
     justifyContent: "center",
   },
