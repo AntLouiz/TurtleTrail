@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Text, View, StyleSheet } from "react-native"
 
-import Modal from '../../components/Modal/Modal'
+import Modal from '../../components/Modal'
 
 
 type Props = {
