@@ -1,14 +1,31 @@
-import React, { type ReactNode } from 'react'
+import React, { useState } from "react";
 
-import { StyleSheet, View, Text } from 'react-native'
+import { AntDesign } from "@expo/vector-icons";
+
+import { StyleSheet, View, Text } from "react-native";
+import { Pressable } from "react-native";
+import { ModalAddTurtle } from "./ModalAddTurtle";
 
 export const TurtlesList = () => {
-    return (
-        <View style={styles.container}>
+  const [showModal, setShowModal] = useState<boolean>(false);
+  return (
+    <>
+      <ModalAddTurtle visible={showModal} onClose={() => setShowModal(false)} />
+      <View style={styles.container}>
         <Text>TurtlesList</Text>
-        </View>
-    )
-}
+      </View>
+      <Pressable
+        activeOpacity={0.6}
+        underlayColor="#DDDDDD"
+        onPress={() => setShowModal(true)}
+      >
+        <Text style={styles.button}>
+          <AntDesign name="plus" size={30} />
+        </Text>
+      </Pressable>
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -17,4 +34,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-})
+  button: {
+    borderRadius: 100,
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 20,
+  },
+});
