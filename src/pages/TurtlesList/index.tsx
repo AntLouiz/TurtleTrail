@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons"
+import { Pressable, StyleSheet, View, Text } from "react-native"
 
-import { StyleSheet, View, Text } from "react-native";
-import { Pressable } from "react-native";
-import { ModalAddTurtle } from "./ModalAddTurtle";
+import { ModalAddTurtle } from "./ModalAddTurtle"
 
 export const TurtlesList = () => {
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false)
   return (
     <>
       <ModalAddTurtle visible={showModal} onClose={() => setShowModal(false)} />
