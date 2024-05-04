@@ -4,5 +4,7 @@ export const COLORS = {
     background: '#F3EDF7',
     text: 'white',
     accent: '#e74c3c',
+    input: '#DDDDDD',
+    error: 'red',
     transparent: 'transparent'
 }

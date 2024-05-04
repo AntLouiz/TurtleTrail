@@ -1,24 +1,36 @@
 import React from 'react'
 
 import { Pressable, Text, StyleSheet } from 'react-native'
-import { COLORS } from '../../tokens/colors';
-import { SIZES } from '../../tokens/sizes';
-import { SPACING } from '../../tokens/spacing';
+import { COLORS } from '../../tokens/colors'
+import { SIZES } from '../../tokens/sizes'
+import { SPACING } from '../../tokens/spacing'
 
+export interface ButtonDefault {
+    type: 'outline' | 'rounded'
+    title: string
+    disabled?: boolean
+    onPress: () => void
+}
 
-export function Button(props) {
-    const { onPress, title, type } = props;
+export function Button(props: ButtonDefault) {
+    const { onPress, title, type } = props
 
     const choosedStyle = variations[type]
 
-    const buttonStyles = StyleSheet.compose(defaultStyles.button, choosedStyle.button)
-    const textStyles = StyleSheet.compose(defaultStyles.text, choosedStyle.text)
+    let buttonStyles = {
+        ...defaultStyles.button,
+        ...choosedStyle.button
+    }
+    if (props.disabled) {
+        buttonStyles = {...buttonStyles, ...defaultStyles.disabled}
+    }
+    const textStyles = {...defaultStyles.text, ...choosedStyle.text}
     return (
-      <Pressable style={buttonStyles} onPress={onPress}>
-        <Text style={textStyles}>{title}</Text>
-      </Pressable>
+        <Pressable style={buttonStyles} disabled={props.disabled} onPress={onPress}>
+            <Text style={textStyles}>{title}</Text>
+        </Pressable>
     )
-  }
+}
 
 const defaultStyles = StyleSheet.create({
     button: {
@@ -31,6 +43,9 @@ const defaultStyles = StyleSheet.create({
         backgroundColor: COLORS.primary,
         borderColor: COLORS.primary,
         borderWidth: SPACING.px
+    },
+    disabled: {
+        opacity: 0.3
     },
     text: {
         fontSize: SIZES.medium,
