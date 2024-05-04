@@ -5,6 +5,7 @@ import { Pressable, StyleSheet, View, Text } from 'react-native'
 
 import { ModalFormAddTurtle } from './ModalFormAddTurtle'
 import { SPACING } from '../../tokens/spacing'
+import { SIZES } from '../../tokens/sizes'
 
 export const TurtlesList = () => {
     const [showModal, setShowModal] = useState<boolean>(false)
@@ -20,7 +21,7 @@ export const TurtlesList = () => {
             </View>
             <Pressable onPress={() => setShowModal(true)}>
                 <Text style={styles.button}>
-                    <AntDesign name="plus" size={30} />
+                    <AntDesign name="plus" size={SIZES.extraLarge} />
                 </Text>
             </Pressable>
         </>
