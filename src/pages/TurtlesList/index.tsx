@@ -4,6 +4,7 @@ import { AntDesign } from '@expo/vector-icons'
 import { Pressable, StyleSheet, View, Text } from 'react-native'
 
 import { ModalFormAddTurtle } from './ModalFormAddTurtle'
+import { SPACING } from '../../tokens/spacing'
 
 export const TurtlesList = () => {
     const [showModal, setShowModal] = useState<boolean>(false)
@@ -36,10 +37,10 @@ const styles = StyleSheet.create({
     button: {
         borderRadius: 100,
         position: 'absolute',
-        bottom: 20,
-        right: 20,
+        bottom: SPACING[5],
+        right: SPACING[5],
         alignItems: 'center',
         backgroundColor: '#DDDDDD',
-        padding: 20
+        padding: SPACING[5]
     }
 })
