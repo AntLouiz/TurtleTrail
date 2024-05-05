@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { View, StyleSheet } from 'react-native'
 import { useForm, FormProvider, FieldValues } from 'react-hook-form'
@@ -7,15 +7,11 @@ import { TextField } from '../../../../components/TextField'
 import Modal from '../../../../components/Modal'
 import { SPACING } from '../../../../tokens/spacing'
 
-export type FormTurtleData = {
-    code: string,
-    name: string,
-    weight: string
-}
+import { Turtle } from '../../../../types'
 
 type Props = {
-    defaultValues?: FormTurtleData,
-    onSubmit: (data: FormTurtleData) => void,
+    defaultValues?: Turtle,
+    onSubmit: (data: Turtle) => void,
     onCancel: () => void
 }
 

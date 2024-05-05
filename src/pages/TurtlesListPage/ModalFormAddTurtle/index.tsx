@@ -3,12 +3,13 @@ import React from 'react'
 import { StyleSheet, Alert } from "react-native"
 
 import Modal from '../../../components/Modal'
-import { FormTurtle, FormTurtleData } from './FormTurtle'
+import { FormTurtle } from './FormTurtle'
+import { Turtle } from '../../../types'
 
 
 type Props = {
     visible: boolean
-    onSubmit: (data: FormTurtleData) => void
+    onSubmit: (data: Turtle) => void
     onClose: () => void
 }
 

@@ -5,9 +5,11 @@ import { Pressable, StyleSheet, View, Text } from 'react-native'
 
 import { Notification } from '../../components/Notification'
 import { ModalFormAddTurtle } from './ModalFormAddTurtle'
+
 import { SPACING } from '../../tokens/spacing'
 import { SIZES } from '../../tokens/sizes'
 import { COLORS } from '../../tokens/colors'
+import { TurtlesList } from './TurtlesList'
 
 export const TurtlesListPage = () => {
     const [showModal, setShowModal] = useState<boolean>(false)
@@ -33,7 +35,7 @@ export const TurtlesListPage = () => {
                 onClose={() => setShowModal(false)}
             />
             <View style={styles.container}>
-                <Text>TurtlesList</Text>
+                <TurtlesList turtles={[]} />
             </View>
             <Pressable onPress={() => setShowModal(true)}>
                 <Text style={styles.button}>
