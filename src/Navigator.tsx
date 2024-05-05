@@ -1,11 +1,12 @@
-import React, { type ReactNode } from "react";
+import React, { type ReactNode } from "react"
 
-import { NavigationContainer } from "@react-navigation/native";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { NavigationContainer } from "@react-navigation/native"
+import { createDrawerNavigator } from "@react-navigation/drawer"
 
-import { Home } from "./pages/Home";
-import { TurtlesList } from "./pages/TurtlesList";
-import { SearchInput } from "./components/SearchInput";
+import { Notification } from './components/Notification'
+import { Home } from "./pages/Home"
+import { TurtlesListPage } from "./pages/TurtlesListPage"
+import { SearchInput } from "./components/SearchInput"
 
 const Drawer = createDrawerNavigator();
 
@@ -22,7 +23,7 @@ const Navigator = (): ReactNode => {
         />
         <Drawer.Screen
           name="Turtles"
-          component={TurtlesList}
+          component={TurtlesListPage}
           options={{
             headerRight: () => <SearchInput placeholder="Search a turtle" />,
           }}

@@ -5,6 +5,8 @@ export const COLORS = {
     text: 'white',
     accent: '#e74c3c',
     input: '#DDDDDD',
+    page: '#fff',
+    notification: '#DDDDDD',
     error: 'red',
     transparent: 'transparent'
 }
