@@ -42,7 +42,8 @@ const defaultStyles = StyleSheet.create({
         elevation: SPACING[1],
         backgroundColor: COLORS.primary,
         borderColor: COLORS.primary,
-        borderWidth: SPACING.px
+        borderWidth: SPACING.px,
+        height: SPACING[12]
     },
     disabled: {
         opacity: 0.3

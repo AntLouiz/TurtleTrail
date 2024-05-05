@@ -71,7 +71,8 @@ Modal.Footer = Footer
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
-        backgroundColor: COLORS.background
+        backgroundColor: COLORS.background,
+        height: '90%'
     },
     header: {
         flexDirection: 'row',
@@ -83,7 +84,8 @@ const styles = StyleSheet.create({
         fontWeight: '400'
     },
     contentContainer: {
-        backgroundColor: COLORS.background
+        backgroundColor: COLORS.background,
+        height: '100%'
     },
     buttonClose: {
         right: SPACING[3],
@@ -94,8 +96,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: SPACING[6],
         gap: SPACING[7],
-        justifyContent: 'center',
-        alignContent: 'center'
+        alignContent: 'center',
+        alignItems: 'flex-end',
+        width: '100%',
+        justifyContent: 'space-evenly'
     }
 })
 

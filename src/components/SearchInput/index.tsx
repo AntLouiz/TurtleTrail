@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
   },
   input: {
     padding: SPACING[3],
-    width: 500,
     borderRadius: SPACING[7],
   },
   container: {
