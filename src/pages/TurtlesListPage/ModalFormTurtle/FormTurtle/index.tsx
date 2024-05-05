@@ -10,21 +10,19 @@ import { SPACING } from '../../../../tokens/spacing'
 import { Turtle } from '../../../../types'
 
 type Props = {
-    defaultValues?: Turtle,
-    onSubmit: (data: Turtle) => void,
+    defaultValues: Turtle | null
+    onSubmit: (data: Turtle) => void
     onCancel: () => void
 }
 
 export const FormTurtle = (props: Props) => {
-    const methods = useForm()
-    const { handleSubmit, formState: { errors } } = methods
+    const methods = useForm({ defaultValues: props.defaultValues || {} })
+    const { handleSubmit } = methods
 
     const onSubmit = (data: FieldValues) => {
         const { name, code, weight } = data
         props.onSubmit({ name, code, weight })
     }
-
-    console.debug(errors)
 
     return (
         <FormProvider {...methods}>
@@ -32,11 +30,11 @@ export const FormTurtle = (props: Props) => {
                 <View style={styles.inputContainer}>
                     <TextField label="Code:" name='code' required="This field is required" />
                     <TextField label="Weight:" name='weight' required="This field is required" />
-                    <TextField label="Name:" name='name' required="This field is required" />
+                    <TextField label="Name:" name='name' />
                 </View>
                 <Modal.Footer>
                     <Modal.CancelButton title="Cancel" onPress={props.onCancel} />
-                    <Modal.ConfirmButton title="Create" onPress={handleSubmit(onSubmit)} />
+                    <Modal.ConfirmButton title="Submit" onPress={handleSubmit(onSubmit)} />
                 </Modal.Footer>
             </View>
         </FormProvider>

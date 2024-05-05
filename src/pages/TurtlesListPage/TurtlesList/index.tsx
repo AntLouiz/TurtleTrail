@@ -5,15 +5,16 @@ import { SafeAreaView, StatusBar, View, VirtualizedList, StyleSheet, Dimensions,
 import { Turtle } from '../../../types'
 import { SPACING } from '../../../tokens/spacing'
 import { COLORS } from '../../../tokens/colors'
-import { ModalFormAddTurtle } from '../ModalFormAddTurtle'
+import { ModalFormTurtle } from '../ModalFormTurtle'
 
 const turtleImage = require('../../../../assets/defaulturtle.jpeg')
 
 type Props = {
     turtles: Turtle[]
+    onPress: (turtle: Turtle) => void
 }
 
-const getItemCount = (_data: unknown) => 50
+const getItemCount = (_data: unknown) => 10
 
 const getItem = (_data: unknown, index: number): Turtle => ({
     id: Math.random(),
@@ -23,22 +24,13 @@ const getItem = (_data: unknown, index: number): Turtle => ({
 })
 
 export function TurtlesList(props: Props) {
-    const [showModal, setShowModal] = useState<boolean>(false)
-
     return (
         <>
-            <ModalFormAddTurtle
-                visible={showModal}
-                onSubmit={() => {
-                    setShowModal(false)
-                }}
-                onClose={() => setShowModal(false)}
-            />
             <SafeAreaView style={styles.container}>
                 <VirtualizedList
                     initialNumToRender={5}
                     renderItem={({ item }) => {
-                        return <TurtleItem turtle={item} onPress={() => setShowModal(true)} />
+                        return <TurtleItem turtle={item} onPress={() => props.onPress(item)} />
                     }}
                     keyExtractor={item => item.code}
                     getItemCount={getItemCount}

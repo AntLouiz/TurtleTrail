@@ -4,16 +4,28 @@ import { AntDesign } from '@expo/vector-icons'
 import { Pressable, StyleSheet, View, Text } from 'react-native'
 
 import { Notification } from '../../components/Notification'
-import { ModalFormAddTurtle } from './ModalFormAddTurtle'
+import { ModalFormTurtle } from './ModalFormTurtle'
 
 import { SPACING } from '../../tokens/spacing'
 import { SIZES } from '../../tokens/sizes'
 import { COLORS } from '../../tokens/colors'
 import { TurtlesList } from './TurtlesList'
+import { Turtle } from '../../types'
 
 export const TurtlesListPage = () => {
     const [showModal, setShowModal] = useState<boolean>(false)
     const [notificationMessage, setNotificationMessage] = useState<string>('')
+    const [selectedTurtle, setSelectedTurtle] = useState<Turtle | null>(null)
+
+    const showModalForm = (turtle: Turtle | null = null) => {
+        setShowModal(true)
+        setSelectedTurtle(turtle)
+    }
+
+    const hideModalForm = () => {
+        setShowModal(false)
+        setSelectedTurtle(null)
+    }
 
     const hideNotification = () => setNotificationMessage('')
 
@@ -26,18 +38,19 @@ export const TurtlesListPage = () => {
                 onClose={hideNotification}
                 onTimeoutEnd={hideNotification}
             />
-            <ModalFormAddTurtle
+            <ModalFormTurtle
+                defaultValues={selectedTurtle}
                 visible={showModal}
                 onSubmit={() => {
-                    setShowModal(false)
-                    setNotificationMessage('Turtle added successful!')
+                    hideModalForm()
+                    setNotificationMessage(`Turtle ${selectedTurtle ? 'edited' : 'added'} successful!`)
                 }}
-                onClose={() => setShowModal(false)}
+                onClose={hideModalForm}
             />
             <View style={styles.container}>
-                <TurtlesList turtles={[]} />
+                <TurtlesList turtles={[]} onPress={turtle => showModalForm(turtle)} />
             </View>
-            <Pressable onPress={() => setShowModal(true)}>
+            <Pressable onPress={() => showModalForm()}>
                 <Text style={styles.button}>
                     <AntDesign name="plus" size={SIZES.extraLarge} />
                 </Text>
