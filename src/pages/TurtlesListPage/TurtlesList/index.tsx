@@ -1,40 +1,35 @@
 import React, { useState } from 'react'
 
-import { SafeAreaView, StatusBar, View, VirtualizedList, StyleSheet, Dimensions, Image, Text, Pressable } from 'react-native'
+import { SafeAreaView, StatusBar, VirtualizedList, StyleSheet, Dimensions, Image, Text, Pressable } from 'react-native'
 
 import { Turtle } from '../../../types'
 import { SPACING } from '../../../tokens/spacing'
 import { COLORS } from '../../../tokens/colors'
-import { ModalFormTurtle } from '../ModalFormTurtle'
 
 const turtleImage = require('../../../../assets/defaulturtle.jpeg')
 
 type Props = {
     turtles: Turtle[]
-    onPress: (turtle: Turtle) => void
+    onPress: (turtle: Turtle) => void,
+    onEndReached: () => void
 }
 
-const getItemCount = (_data: unknown) => 10
-
-const getItem = (_data: unknown, index: number): Turtle => ({
-    id: Math.random(),
-    name: `Turtle ${index + 1}`,
-    code: Math.random().toString(12).substring(0),
-    weight: Math.random().toString(12).substring(0)
-})
+const getItem = (data: Turtle[], index: number): Turtle => data[index]
 
 export function TurtlesList(props: Props) {
     return (
         <>
             <SafeAreaView style={styles.container}>
                 <VirtualizedList
+                    data={props.turtles}
                     initialNumToRender={5}
                     renderItem={({ item }) => {
                         return <TurtleItem turtle={item} onPress={() => props.onPress(item)} />
                     }}
                     keyExtractor={item => item.code}
-                    getItemCount={getItemCount}
+                    getItemCount={() => props.turtles.length}
                     getItem={getItem}
+                    onEndReached={() => props.onEndReached()}
                 />
             </SafeAreaView>
         </>

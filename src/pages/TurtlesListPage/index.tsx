@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { AntDesign } from '@expo/vector-icons'
 import { Pressable, StyleSheet, View, Text } from 'react-native'
@@ -11,11 +11,14 @@ import { SIZES } from '../../tokens/sizes'
 import { COLORS } from '../../tokens/colors'
 import { TurtlesList } from './TurtlesList'
 import { Turtle } from '../../types'
+import { getTurtles } from '../../gateways/turtle'
 
 export const TurtlesListPage = () => {
     const [showModal, setShowModal] = useState<boolean>(false)
     const [notificationMessage, setNotificationMessage] = useState<string>('')
     const [selectedTurtle, setSelectedTurtle] = useState<Turtle | null>(null)
+    const [page, setPage] = useState<number>(1)
+    const [turtles, setTurtles] = useState<Turtle[]>([])
 
     const showModalForm = (turtle: Turtle | null = null) => {
         setShowModal(true)
@@ -28,6 +31,13 @@ export const TurtlesListPage = () => {
     }
 
     const hideNotification = () => setNotificationMessage('')
+
+    useEffect(() => {
+        getTurtles(1).then(data => {
+            setTurtles(data)
+            setPage(page + 1)
+        })
+    }, [])
 
     return (
         <>
@@ -48,7 +58,18 @@ export const TurtlesListPage = () => {
                 onClose={hideModalForm}
             />
             <View style={styles.container}>
-                <TurtlesList turtles={[]} onPress={turtle => showModalForm(turtle)} />
+                <TurtlesList 
+                    turtles={turtles}
+                    onPress={turtle => showModalForm(turtle)}
+                    onEndReached={() => {
+                        getTurtles(page).then(data => {
+                            if (data.length) {
+                                setTurtles(data)
+                                setPage(page + 1)
+                            }
+                        })
+                    }}
+                />
             </View>
             <Pressable onPress={() => showModalForm()}>
                 <Text style={styles.button}>

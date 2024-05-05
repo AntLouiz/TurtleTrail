@@ -20,9 +20,7 @@ export const TextField = (props: Props) => {
     const { control } = useFormContext()
     const { field, fieldState } = useController({ control, defaultValue: '', name, rules: { required } })
 
-    console.debug(fieldState.error)
-
-    return (
+        return (
         <View style={styles.container}>
             <Text style={styles.label}>{label}</Text>
             <TextInput
