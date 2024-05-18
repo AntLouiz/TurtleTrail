@@ -8,8 +8,11 @@ import { useController, useFormContext } from 'react-hook-form'
 import { Button } from '../../../../../components/Button'
 import { Location } from '../../../../../types'
 
+type Props = {
+    name: string
+}
 
-export const CurrentPositionField = (props: { name: string }) => {
+export const CurrentPositionField = (props: Props) => {
     const [isGettingLocation, setIsGettingLocation] = useState(false)
     const { control } = useFormContext()
     const { field } = useController({ control, name: props.name })
