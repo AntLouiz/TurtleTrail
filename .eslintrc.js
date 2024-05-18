@@ -12,7 +12,7 @@ module.exports = {
     'import/resolver': {
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
-        paths: ['src/components', 'react-native'], // caminho para o diretório onde estão seus componentes
+        paths: ['src/components', 'react-native'],
       },
     },
   },
