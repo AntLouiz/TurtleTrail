@@ -5,6 +5,7 @@ import { useForm, FormProvider, FieldValues } from 'react-hook-form'
 
 import { TextField } from '../../../../components/TextField'
 import Modal from '../../../../components/Modal'
+import { CurrentPositionField } from './GetCurrentPositionField'
 import { SPACING } from '../../../../tokens/spacing'
 
 import { Turtle } from '../../../../types'
@@ -20,8 +21,8 @@ export const FormTurtle = (props: Props) => {
     const { handleSubmit } = methods
 
     const onSubmit = (data: FieldValues) => {
-        const { name, code, weight } = data
-        props.onSubmit({ name, code, weight })
+        const { name, code, weight, location } = data
+        props.onSubmit({ name, code, weight, location })
     }
 
     return (
@@ -31,6 +32,7 @@ export const FormTurtle = (props: Props) => {
                     <TextField label="Code:" name='code' required="This field is required" />
                     <TextField label="Weight:" name='weight' required="This field is required" />
                     <TextField label="Name:" name='name' />
+                    <CurrentPositionField name='location' />
                 </View>
                 <Modal.Footer>
                     <Modal.CancelButton title="Cancel" onPress={props.onCancel} />
