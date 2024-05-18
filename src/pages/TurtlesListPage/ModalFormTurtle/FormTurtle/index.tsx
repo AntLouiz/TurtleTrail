@@ -19,7 +19,7 @@ type Props = {
 
 export const FormTurtle = (props: Props) => {
     const methods = useForm({ defaultValues: props.defaultValues || {} })
-    const { handleSubmit, watch } = methods
+    const { handleSubmit } = methods
 
     const onSubmit = (data: FieldValues) => {
         const { name, code, weight, location } = data
